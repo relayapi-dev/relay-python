@@ -1,0 +1,203 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import os
+from typing import Any, cast
+
+import pytest
+
+from relay import Relay, AsyncRelay
+from tests.utils import assert_matches_type
+from relay.types.accounts import (
+    GmbLocationRetrieveResponse,
+    GmbLocationSetDefaultResponse,
+)
+
+base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
+
+class TestGmbLocations:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve(self, client: Relay) -> None:
+        gmb_location = client.accounts.gmb_locations.retrieve(
+            "id",
+        )
+        assert_matches_type(GmbLocationRetrieveResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve(self, client: Relay) -> None:
+        response = client.accounts.gmb_locations.with_raw_response.retrieve(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gmb_location = response.parse()
+        assert_matches_type(GmbLocationRetrieveResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve(self, client: Relay) -> None:
+        with client.accounts.gmb_locations.with_streaming_response.retrieve(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gmb_location = response.parse()
+            assert_matches_type(GmbLocationRetrieveResponse, gmb_location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve(self, client: Relay) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.accounts.gmb_locations.with_raw_response.retrieve(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_set_default(self, client: Relay) -> None:
+        gmb_location = client.accounts.gmb_locations.set_default(
+            id="id",
+            location_id="location_id",
+        )
+        assert_matches_type(GmbLocationSetDefaultResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_set_default(self, client: Relay) -> None:
+        response = client.accounts.gmb_locations.with_raw_response.set_default(
+            id="id",
+            location_id="location_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gmb_location = response.parse()
+        assert_matches_type(GmbLocationSetDefaultResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_set_default(self, client: Relay) -> None:
+        with client.accounts.gmb_locations.with_streaming_response.set_default(
+            id="id",
+            location_id="location_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gmb_location = response.parse()
+            assert_matches_type(GmbLocationSetDefaultResponse, gmb_location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_set_default(self, client: Relay) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.accounts.gmb_locations.with_raw_response.set_default(
+                id="",
+                location_id="location_id",
+            )
+
+
+class TestAsyncGmbLocations:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve(self, async_client: AsyncRelay) -> None:
+        gmb_location = await async_client.accounts.gmb_locations.retrieve(
+            "id",
+        )
+        assert_matches_type(GmbLocationRetrieveResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve(self, async_client: AsyncRelay) -> None:
+        response = await async_client.accounts.gmb_locations.with_raw_response.retrieve(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gmb_location = await response.parse()
+        assert_matches_type(GmbLocationRetrieveResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve(self, async_client: AsyncRelay) -> None:
+        async with async_client.accounts.gmb_locations.with_streaming_response.retrieve(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gmb_location = await response.parse()
+            assert_matches_type(GmbLocationRetrieveResponse, gmb_location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve(self, async_client: AsyncRelay) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.accounts.gmb_locations.with_raw_response.retrieve(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_set_default(self, async_client: AsyncRelay) -> None:
+        gmb_location = await async_client.accounts.gmb_locations.set_default(
+            id="id",
+            location_id="location_id",
+        )
+        assert_matches_type(GmbLocationSetDefaultResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_set_default(self, async_client: AsyncRelay) -> None:
+        response = await async_client.accounts.gmb_locations.with_raw_response.set_default(
+            id="id",
+            location_id="location_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gmb_location = await response.parse()
+        assert_matches_type(GmbLocationSetDefaultResponse, gmb_location, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_set_default(self, async_client: AsyncRelay) -> None:
+        async with async_client.accounts.gmb_locations.with_streaming_response.set_default(
+            id="id",
+            location_id="location_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gmb_location = await response.parse()
+            assert_matches_type(GmbLocationSetDefaultResponse, gmb_location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_set_default(self, async_client: AsyncRelay) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.accounts.gmb_locations.with_raw_response.set_default(
+                id="",
+                location_id="location_id",
+            )
