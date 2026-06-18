@@ -249,9 +249,11 @@ class Relay(SyncAPIClient):
 
     @override
     def _auth_headers(self, security: SecurityOptions) -> dict[str, str]:
-        return {
-            **(self._bearer if security.get("bearer", False) else {}),
-        }
+        headers: dict[str, str] = {}
+        if security.get("bearer", False):
+            for key, value in self._bearer.items():
+                headers.setdefault(key, value)
+        return headers
 
     @property
     def _bearer(self) -> dict[str, str]:
@@ -527,9 +529,11 @@ class AsyncRelay(AsyncAPIClient):
 
     @override
     def _auth_headers(self, security: SecurityOptions) -> dict[str, str]:
-        return {
-            **(self._bearer if security.get("bearer", False) else {}),
-        }
+        headers: dict[str, str] = {}
+        if security.get("bearer", False):
+            for key, value in self._bearer.items():
+                headers.setdefault(key, value)
+        return headers
 
     @property
     def _bearer(self) -> dict[str, str]:
